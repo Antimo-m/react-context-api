@@ -8,13 +8,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import DettagliProdotto from './pages/DettagliProdotto'
 import NoFound from "./pages/NoFound.jsx"
-import { BudgetContext } from './Context/BudgetContext.jsx'
+import { BudgetProvider } from './Context/BudgetContext.jsx'
 
 function App() {
 
   return (
     <>
-     <BudgetContext.Provider>
+     <BudgetProvider>
       <BrowserRouter>
         <Routes>
           <Route element={<DefaultLayout/>}>
@@ -26,7 +26,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      </BudgetContext.Provider>
+      </BudgetProvider>
     </>
   )
 }

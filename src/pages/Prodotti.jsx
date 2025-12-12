@@ -1,12 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom";
-
+import { BudgetContext } from "../Context/BudgetContext";
 
 
 function Prodotti() {
     const [prodotti, setProdotti] = useState([])
-   
+    const  {budgetMode} = useContext(BudgetContext)
+
+    const ProdottiFiltrati = budgetMode ? prodotti.filter((p) => p.price <= 30) : prodotti;
+
     useEffect(() => {
         axios.get("https://fakestoreapi.com/products?limit=14")
             .then((resp) => {
@@ -19,7 +22,7 @@ function Prodotti() {
     return (
         <>
             <div className="d-flex justify-content-center gap-3 flex-wrap">
-                {prodotti.map((prodotto) => (
+                {ProdottiFiltrati.map((prodotto) => (
                     
                     <div className="card" key={prodotto.id} style={{ width: "250px" }}>
                         <img
@@ -41,7 +44,7 @@ function Prodotti() {
                         </div>
                         <>
                             <div className="text-center mb-3">
-                                <Link className="btn btn-primary" to={`/prodotti/${prodotto.id}`}>Dettagli</Link>    {/* qui siamo andati a dare un link dinamico a tutti i prodotti tramite id del singolo prodotto per costruire l'url della pagina dettaglio */}
+                                <Link className="btn btn-primary" to={`/prodotti/${prodotto.id}`}>Dettagli</Link>  {/* qui siamo andati a dare un link dinamico a tutti i prodotti tramite id del singolo prodotto per costruire l'url della pagina dettaglio */}
                             </div>
                         </>
                        
