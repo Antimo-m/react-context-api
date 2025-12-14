@@ -6,7 +6,7 @@ function DettagliProdotto() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [prodotto, setProdotto] = useState(null);
+    const [prodotto, setProdotto] = useState([]);
 
     function goPrev() {
         Number(id) > 1 ? navigate(`/prodotti/${Number(id) - 1}`) : null; //funzione in cui navighiamo tra i prodotti con navigate poi prendiamo l'id del prodotto corrente lo decrementiamo di 1 e usiamo navigate per spostarci alla pagina del precedente prodotto, in un ternario dove iniziamo con il dire che la funzione funzionera solo se l'id è superiore a 1, se è sotto 1 restituiamo null cosi da bloccare il bottone
@@ -65,7 +65,7 @@ function DettagliProdotto() {
 
 
                             <p className="card-text">
-                                <span className="text-danger"> Rating di questo Prodotto:</span>{prodotto.rating.rate} ({prodotto.rating.count})
+                                <span className="text-danger"> Rating di questo Prodotto:</span>{prodotto?.rating?.rate} ({prodotto?.rating?.count})
                             </p>
                         </div>
                     </div>

@@ -6,12 +6,12 @@ import { BudgetContext } from "../Context/BudgetContext";
 
 function Prodotti() {
     const [prodotti, setProdotti] = useState([])
-    const  {budgetMode} = useContext(BudgetContext)
+    const  {budgetMode, budgetValue} = useContext(BudgetContext)
 
-    const ProdottiFiltrati = budgetMode ? prodotti.filter((p) => p.price <= 30) : prodotti;
+    const ProdottiFiltrati = budgetMode && budgetValue ? prodotti.filter((p) => p.price <=budgetValue) : prodotti;
 
     useEffect(() => {
-        axios.get("https://fakestoreapi.com/products?limit=14")
+        axios.get("https://fakestoreapi.com/products?limit=20")
             .then((resp) => {
 
                 setProdotti(resp.data)

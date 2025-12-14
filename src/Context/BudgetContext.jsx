@@ -5,11 +5,13 @@ const BudgetContext = createContext() //iniziamo creando il context, ora passiam
 
 function BudgetProvider ({children}) {
     const [budgetMode, setBudgetMode] = useState(false)
-
+    const [budgetValue, setBudgetValue] = useState(null)
 
     const Valori = {
         budgetMode,
         setBudgetMode,
+        budgetValue,
+        setBudgetValue
     }
 
     return(
